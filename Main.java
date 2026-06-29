@@ -8,7 +8,7 @@ public class Main extends ListenerAdapter {
 
     public static void main(String[] args) throws Exception {
 
-        String token = "";
+        String token = "TOKEN";
 
         JDABuilder.createDefault(
                         token,
