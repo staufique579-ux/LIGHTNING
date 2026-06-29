@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Main extends ListenerAdapter {
 
-```
+
 public static void main(String[] args) throws Exception {
 
     String token = System.getenv("TOKEN");
