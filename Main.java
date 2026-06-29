@@ -1,3 +1,4 @@
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -5,36 +6,42 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Main extends ListenerAdapter {
 
+```
+public static void main(String[] args) throws Exception {
 
-    public static void main(String[] args) throws Exception {
+    String token = System.getenv("TOKEN");
 
-        String token = "TOKEN";
+    JDA bot =
+            JDABuilder.createDefault(
+                            token,
+                            GatewayIntent.GUILD_MESSAGES,
+                            GatewayIntent.MESSAGE_CONTENT
+                    )
+                    .addEventListeners(new Main())
+                    .build();
 
-        JDABuilder.createDefault(
-                        token,
-                        GatewayIntent.GUILD_MESSAGES,
-                        GatewayIntent.MESSAGE_CONTENT
-                )
-                .addEventListeners(new Main())
-                .build();
+    bot.awaitReady();
 
-        System.out.println("BOT ONLINE");
-
-
-    }
-
+    System.out.println("BOT ONLINE");
+}
 
 
 
-    @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.getAuthor().isBot())
-            return;
+@Override
+public void onMessageReceived(MessageReceivedEvent event)
+{
+    if(event.getAuthor().isBot())
+        return;
 
-        String msg =
-                event.getMessage()
-                        .getContentRaw();
+    String msg =
+            event.getMessage()
+                    .getContentRaw()
+                    .trim()
+                    .toLowerCase();
 
+
+
+  
 
         // BOT ONLINE/OFFLINE NTFN:
 
